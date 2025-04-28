@@ -10,20 +10,20 @@ auto create_container(auto* resource, Values&&... values) {
 };
 
 int main() {
-  pmrspy::print_alloc default_alloc{"Rogue PMR Allocation!", std::pmr::null_memory_resource()};
+  pmrspy::print_alloc_data default_alloc{"Rogue PMR Allocation!", std::pmr::null_memory_resource()};
   std::pmr::set_default_resource(&default_alloc);
 
-  pmrspy::print_alloc oom{"Out of Memory", std::pmr::null_memory_resource()};
+  pmrspy::print_alloc_data oom{"Out of Memory", std::pmr::null_memory_resource()};
 
   std::array<std::uint8_t, 32768> buffer{};
   std::pmr::monotonic_buffer_resource
     underlying_bytes(buffer.data(), buffer.size(), &oom);
 
-  pmrspy::print_alloc monotonic{"Monotonic Array", &underlying_bytes};
+  pmrspy::print_alloc_data monotonic{"Monotonic Array", &underlying_bytes};
 
   std::pmr::unsynchronized_pool_resource unsync_pool(&monotonic);
 
-  pmrspy::print_alloc pool("Pool", &unsync_pool);
+  pmrspy::print_alloc_data pool("Pool", &unsync_pool);
 
   for (auto i = 0uz; i < 10; ++i)
   {
