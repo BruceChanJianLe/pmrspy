@@ -35,21 +35,21 @@ target_include_directories(pmrspy INTERFACE
 target_link_libraries(pmrspy INTERFACE fmt::fmt)
 
 install(TARGETS pmrspy
-    EXPORT pmrspy-targets
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-    RUNTIME DESTINATION bin
-    INCLUDES DESTINATION include
+  EXPORT pmrspy-targets
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES DESTINATION include
 )
 
-install(FILES pmrspy.hpp
-    DESTINATION include/pmrspy
+install(FILES include/pmrspy/pmrspy.hpp
+  DESTINATION include/pmrspy
 )
 
 install(EXPORT pmrspy-targets
-    FILE pmrspy-config.cmake
-    NAMESPACE pmrspy::
-    DESTINATION lib/cmake/pmrspy
+  FILE pmrspy-config.cmake
+  NAMESPACE pmrspy::
+  DESTINATION lib/cmake/pmrspy
 )
 
 option(BUILD_EXAMPLES "Build example applications" ON)
