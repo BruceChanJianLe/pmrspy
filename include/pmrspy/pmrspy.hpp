@@ -91,8 +91,10 @@ namespace pmrspy
 
     void do_deallocate(void* p, std::size_t bytes, std::size_t alignment) override
     {
-      fmt::print(fg(fmt::color::light_salmon), "[{} (dealloc)] Address: {} Dealloc Size: {} Alignment: {} Data: {}\n",
-        name_, p, bytes, alignment, format_destroyed_bytes(static_cast<std::byte*>(p), bytes)
+      // fmt::print(fg(fmt::color::light_salmon), "[{} (dealloc)] Address: {} Dealloc Size: {} Alignment: {} Data: {}\n",
+      //   name_, p, bytes, alignment, format_destroyed_bytes(static_cast<std::byte*>(p), bytes)
+      fmt::print(fg(fmt::color::light_salmon), "[{} (dealloc)] Address: {} Dealloc Size: {} Alignment: {}\n",
+        name_, p, bytes, alignment
       );
       upstream_->deallocate(p, bytes, alignment);
     }
